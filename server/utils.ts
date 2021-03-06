@@ -1,0 +1,1 @@
+export const randomItemFromArray = (arr: Array<string>) => arr[Math.floor(Math.random() * arr.length)]
