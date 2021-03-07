@@ -10,9 +10,8 @@ if (!customElements.get("selfie-intent")) {
       }
       #video {
         border: 1px solid black;
-        box-shadow: 2px 2px 3px black;
-        width:320px;
-        height:240px;
+        width: 100vw;
+        height: 80vh;
       }
       
       #photo {
@@ -27,7 +26,7 @@ if (!customElements.get("selfie-intent")) {
       }
       
       .camera {
-        width: 340px;
+        width: 100vw;
         display:inline-block;
       }
       
