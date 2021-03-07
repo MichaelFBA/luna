@@ -26,6 +26,13 @@ for await (const request of server) {
   } else {
     // Static Files
     switch (url) {
+      case '/save-file':
+        console.log(request)
+        let buf = await Deno.readAll(request.body);
+        await Deno.writeFile(`./${Date.now()}.jpg`, buf);
+        request.respond({ status: 200 });
+        break;
+      
       case '/':
         request.respond(await serveFile(request, `${Deno.cwd()}/client/index.html`));
         break;

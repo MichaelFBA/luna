@@ -70,6 +70,22 @@ if (!customElements.get("selfie-intent")) {
       this.canvas = null;
       this.photo = null;
       this.startbutton = null;
+      this.imageCapture = null;
+    }
+
+    upload(body) {
+      fetch(`/save-file`, {
+        method: 'POST',
+        headers: new Headers({ 'Content-Type': 'application/octet-stream' }),
+        body,
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.error(error)
+      })
     }
 
     startup() {
@@ -83,6 +99,8 @@ if (!customElements.get("selfie-intent")) {
         .then((stream) => {
           this.video.srcObject = stream;
           this.video.play();
+          const track = stream.getVideoTracks()[0];
+          this.imageCapture = new ImageCapture(track);
         })
         .catch(function (err) {
           console.log("An error occurred: " + err);
@@ -116,12 +134,19 @@ if (!customElements.get("selfie-intent")) {
         "click",
         (ev) => {
           this.takepicture();
+          this.onTakePhotoButtonClick();
           ev.preventDefault();
         },
         false
       );
 
       this.clearphoto();
+    }
+
+    onTakePhotoButtonClick() {
+      this.imageCapture.takePhoto()
+        .then(blob => this.upload(blob))
+      .catch(error => console.log(error));
     }
 
     // Fill the photo with an indication that none has been

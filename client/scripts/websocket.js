@@ -5,7 +5,7 @@ const main = document.querySelector('main');
 
 webSocket.onopen = function (event) {
     console.log(event)
-    // requestIntent('selfie')
+    requestIntent('selfie')
 };
 
 webSocket.addEventListener('message', function (event) {
