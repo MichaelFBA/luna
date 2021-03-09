@@ -12,11 +12,13 @@ export const handleWs = async (sock: WebSocket) => {
   try {
     for await (const ev of sock) {
       if (typeof ev === "string") {
+
+
         // Request Intents
         console.log("ws:Text", ev);
-       
+        
+        // Poor mans natural language processing
         const intent = Object.keys(intents).find(key => ev.includes(key))
-        console.log('intent')
         if (intent) await sock.send(JSON.stringify(intents[intent]));
 
 

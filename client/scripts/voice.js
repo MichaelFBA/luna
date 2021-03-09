@@ -1,5 +1,5 @@
 let WIDTH, HEIGHT;
-// document.body.addEventListener('click', init);
+document.body.addEventListener('click', init);
 
 
 function init() {
@@ -68,7 +68,7 @@ function init() {
 
     if (navigator.mediaDevices.getUserMedia) {
         console.log('getUserMedia supported.');
-        var constraints = { audio: true }
+        var constraints = { audio: true, echoCancellation: true }
         navigator.mediaDevices.getUserMedia(constraints)
             .then(
                 function (stream) {
