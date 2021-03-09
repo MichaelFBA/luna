@@ -4,8 +4,6 @@ import { requestIntent } from './websocket.js';
 const footer = document.querySelector('footer')
 document.body.addEventListener('click', () => {
     speechRecognition()
-    // speechSynthesis('Guten Morgen Mit Anand')
-    // console.log(speechSynthesis)
 });
 
 const synth = window.speechSynthesis;

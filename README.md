@@ -3,7 +3,7 @@
 # Server
 
 Deno + websockets
-`deno run --allow-net --allow-read ./server/main.ts`
+`deno run --allow-net --allow-read --allow-write ./server/main.ts`
 
 # Client
 Simple app that sets up a websocket connection.

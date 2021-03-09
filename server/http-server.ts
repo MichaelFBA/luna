@@ -29,7 +29,7 @@ for await (const request of server) {
       case '/save-file':
         console.log(request)
         let buf = await Deno.readAll(request.body);
-        await Deno.writeFile(`./${Date.now()}.jpg`, buf);
+        await Deno.writeFile(`./images/${Date.now()}.jpg`, buf);
         request.respond({ status: 200 });
         break;
       

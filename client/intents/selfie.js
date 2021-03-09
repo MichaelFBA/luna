@@ -60,12 +60,6 @@ if (!customElements.get("selfie-intent")) {
         body,
       })
       .then(response => response.json())
-      .then(data => {
-        console.log(data)
-      })
-      .catch(error => {
-        console.error(error)
-      })
     }
 
     startup() {
