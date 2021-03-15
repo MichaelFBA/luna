@@ -19,3 +19,6 @@ Simple html app that sets up a websocket connection.
 # Docker
 To build the image `docker build . -t deno/luna`
 This tags the image as `deno/luna:latest`
+
+# Environment Variables
+Rename `.env.eg` to `.env`, these will be read available in the application
