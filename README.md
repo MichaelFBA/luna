@@ -15,6 +15,7 @@ See dockerfile.
 
 # Client
 Simple html app that sets up a websocket connection.
+Its just using es modules with no build system or concern about older browsers.
 
 # Docker
 To build the image `docker build . -t deno/luna`
