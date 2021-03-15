@@ -97,7 +97,7 @@ function init() {
 
         canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
 
-        var draw = function () {
+        const draw = () => {
 
             drawVisual = requestAnimationFrame(draw);
 
