@@ -4,8 +4,6 @@ import { requestIntent } from './websocket.js';
 const footer = document.querySelector('footer')
 document.body.addEventListener('click', () => {
     speechRecognition()
-    // speechSynthesis('Guten Morgen Mit Anand')
-    // console.log(speechSynthesis)
 });
 
 const synth = window.speechSynthesis;
@@ -20,6 +18,7 @@ export const speechSynthesis = (text) => {
     var utterThis = new SpeechSynthesisUtterance(text);
     utterThis.onend = function (event) {
         console.log('SpeechSynthesisUtterance.onend');
+        recognition.start();
     }
     utterThis.onerror = function (event) {
         console.error('SpeechSynthesisUtterance.onerror');
@@ -29,10 +28,11 @@ export const speechSynthesis = (text) => {
     utterThis.pitch = "1";
     utterThis.rate = "1";
     synth.speak(utterThis);
+    recognition.stop();
 }
 
+const recognition = new webkitSpeechRecognition();
 const speechRecognition = () => {
-    var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = false;
 
