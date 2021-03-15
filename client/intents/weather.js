@@ -22,7 +22,7 @@ if (!customElements.get('weather-intent')) {
     }
   
     connectedCallback() {
-      fetch('http://api.openweathermap.org/data/2.5/weather?q=zurich&units=metric&appid=d645d718769a4208e8adfb96768bd3f7')
+      fetch('/weather')
         .then(response => response.json())
         .then(data => this.render(data));
     }

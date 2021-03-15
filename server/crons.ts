@@ -1,13 +1,14 @@
-import {cron} from 'https://deno.land/x/deno_cron/cron.ts';
+import { cron, config } from './deps.ts';
 import { socket } from './web-socket.ts';
 import { randomItemFromArray } from './utils.ts';
+const env = config();
 
 // Say Good Morning
-cron('0 7 * * *', () => {
+cron(env.WAKE_TIME, () => {
     const goodMorning = [
         "You are my sunshine, my only sunshine. You make me happy when skies are grey. You’ll never know, dear, how much I love you. Please don’t take my sunshine away!",
         "Good morning, Sleeping Beauty! I thought you’d never wake up!",
-        "Good morning, Luna!",
+        `Good morning, ${env.NAME}!`,
         "Rise n’ shine!",
         "Good morning! And if I don't see you, good afternoon, good evening, and good night!",
         "Wakey, wakey, eggs and bakey!",
@@ -19,17 +20,17 @@ cron('0 7 * * *', () => {
         "Bad morning, it is not!",
         "Mornin' mi amigo!",
         "Top o' the mornin’ to ya!",
-        "Guten Morgen, Luna",
+        `Guten Morgen, ${env.NAME}`,
         "It's a lovely day today and what have you got to do?"
       ]
     socket && socket.send(JSON.stringify({ el: `<speak-intent icon="👋" speak="${randomItemFromArray(goodMorning)}"></speak-intent>`, script: './intents/speak.js' }))
 });
 
 // Say Good Evening
-cron('0 19 * * *', () => {
+cron(env.WAKE_TIME, () => {
     const goodEvening = [
-        "Guten Nacht, Luna",
-        "Nighty night, Luna"
+        `Guten Nacht, ${env.NAME}`,
+        `Nighty night, ${env.NAME}`
       ]
     socket && socket.send(JSON.stringify({ el: `<speak-intent icon="😴" speak="${randomItemFromArray(goodEvening)}"></speak-intent>`, script: './intents/speak.js' }))
 });

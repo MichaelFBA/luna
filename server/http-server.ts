@@ -1,6 +1,6 @@
-import { serve, serveFile, acceptWebSocket } from './deps.ts';
+import { serve, serveFile, acceptWebSocket, config } from './deps.ts';
 import { handleWs } from './web-socket.ts';
-
+const env = config();
 
 const server = serve({ hostname: "0.0.0.0", port: 3333 });
 console.log(`HTTP webserver running.  Access it at:  http://localhost:3333/`);
@@ -32,6 +32,12 @@ for await (const request of server) {
         let buf = await Deno.readAll(request.body);
         await Deno.writeFile(`./images/${Date.now()}.jpg`, buf);
         request.respond({ status: 200 });
+        break;
+      
+      case '/weather':
+        const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=zurich&units=metric&appid=${env.OPEN_WEATHER_API}`);
+        const data = await res.json();
+        request.respond({status: 200, body: JSON.stringify(data)});
         break;
       
     // Static File serving
