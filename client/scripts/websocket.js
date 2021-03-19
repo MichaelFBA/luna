@@ -1,4 +1,4 @@
-const url = `ws://${location.hostname}`;
+const url = `wss://${location.hostname}`;
 
 const webSocket = new WebSocket(url);
 const main = document.querySelector('main');
