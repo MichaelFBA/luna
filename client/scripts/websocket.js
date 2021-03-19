@@ -1,4 +1,4 @@
-const url = 'ws://localhost:3333';
+const url = `ws://${location.hostname}`;
 
 const webSocket = new WebSocket(url);
 const main = document.querySelector('main');
